@@ -1,12 +1,12 @@
 import { ESLint } from "eslint";
 import { getCwdPath, loggerTiming, loggerError, getDirPath } from "../util";
 import { loggerSuccess } from "../util";
-// import ora from "ora";
+import ora from "ora";
 
 // 1. Create an instance.
 const eslint = new ESLint({
   fix: true,
-  extensions: [".js", ".ts"],
+  extensions: [".js", ".ts", ".tsx"],
   useEslintrc: false,
   overrideConfig: {
     env: {
@@ -27,15 +27,15 @@ const eslint = new ESLint({
 });
 
 export const getEslint = async (path = "src") => {
-  // const spinner = ora('checking...')
+  const spinner = ora("checking...");
 
   try {
     loggerTiming("ESLINT CHECK");
 
-    // spinner.start()
+    spinner.start();
 
     // 2. Lint files.
-    const results = await eslint.lintFiles([getCwdPath(path)]);
+    const results = await eslint.lintFiles(getCwdPath(path));
 
     // 3. Modify the files with the fixed code.
     await ESLint.outputFixes(results);
@@ -49,11 +49,11 @@ export const getEslint = async (path = "src") => {
     if (resultText) {
       loggerError(`'PLEASE CHECK ===》', ${resultText}`);
     } else {
-      // spinner.succeed('Eslint CHECK SUCCESS!');
+      spinner.succeed("Eslint CHECK SUCCESS!");
       loggerSuccess("Eslint check completed!");
     }
   } catch (error) {
-    // spinner.fail('ESLINT CHECK FAILED!');
+    spinner.fail("ESLINT CHECK FAILED!");
     loggerError("ERROR:" + error);
     process.exit(1);
   } finally {
