@@ -1,10 +1,3 @@
-/*
- * @Author: Cookie
- * @Date: 2021-07-03 21:57:20
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-06-23 13:47:31
- * @Description:
- */
 import { ESLint } from "eslint";
 import { getCwdPath, loggerTiming, loggerError, getDirPath } from "../util";
 import { loggerSuccess } from "../util";

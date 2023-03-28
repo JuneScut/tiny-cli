@@ -1,11 +1,3 @@
-/*
- * @Author: Cookie
- * @Date: 2021-07-20 10:43:08
- * @LastEditors: Cookie
- * @LastEditTime: 2021-07-20 11:41:17
- * @Description:
- */
-
 import { getCwdPath } from "../util";
 
 export default {
